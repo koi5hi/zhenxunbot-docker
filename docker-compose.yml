@@ -1,0 +1,23 @@
+# version: "3.9"
+services:
+
+  postgres:
+    image: postgres:alpine
+    container_name: PostgreSQL
+    restart: always
+    environment:
+      POSTGRES_USER: zhenxun
+      POSTGRES_PASSWORD: uname
+      POSTGRES_DB: testdb
+    network_mode: host
+    ports:
+      - 5432:5432
+    volumes:
+      - /data/compose/postgresql/data:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer
+    container_name: db_adminer
+    restart: always
+    ports:
+      - 8080:8080
