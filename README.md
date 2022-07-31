@@ -17,7 +17,6 @@
 ![Arduino](https://img.shields.io/badge/-Debian-A81D33?style=for-the-badge&logo=debian&logoColor=white)
 ![Arduino](https://img.shields.io/badge/-Python3.9-3776AB?style=for-the-badge&logo=python&logoColor=white)
 
-
 **镜像内已集成运行BOT需要的数据库、BOT本体、以及真寻WebUI😋**
 
 <img align=right src='https://github.githubassets.com/images/mona-whisper.gif' />
@@ -27,9 +26,12 @@
 ## 🚀快速开始
 
 直接运行下面这条命令,就会出现一个脚本引导你创建一个Bot容器
+
 ```
 curl -sSL https://raw.githubusercontent.com/SinKy-Yan/zhenxunbot-docker/master/SetUP.sh | sudo bash
 ```
+
+rich requests jinja2 thefuzz aiocache baike imageio
 
 ## 🧐需要知道
 
@@ -100,6 +102,7 @@ docker buildx build --platform=arm64 --tag=zhenxun -o type=docker .
 ```
 
 ## 容器内文件结构📂
+
 ```
 /home
 ├── go-cqhttp
