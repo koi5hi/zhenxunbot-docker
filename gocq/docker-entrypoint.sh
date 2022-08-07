@@ -1,4 +1,4 @@
-#！/bin/sh
+#!/bin/sh
 get_arch=`arch`
 if [[ $get_arch =~ "x86_64" ]];then
     mv /home/amd64/go-cqhttp /home/go-cqhttp

@@ -21,12 +21,12 @@ sed -i '14a nonebot.load_plugins("my_plugins")' ./zhenxun_bot/bot.py
 
 # cd /home/go-cqhttp
 # nohup ./go-cqhttp -faststart >> /home/zhenxun_bot/my_plugins/gocq.log 2>&1 &
-# echo -e "\033[32m✔go-cqhttp 开始运行\033[0m，详细日志请到 ~/my_plugins/gocq.log 查看"
+# echo -e "\033[32m✔go-cqhttp 开始运行\033[0m,详细日志请到 ~/my_plugins/gocq.log 查看"
 # sleep 3s
 
 # cd /home/zhenxun_bot_webui
 # nohup yarn run serve >> /home/zhenxun_bot/my_plugins/webui.log 2>&1 &
-# echo -e "\033[32m✔WebUI 开始运行\033[0m，详细日志请到 ~/my_plugins/webui.log 查看"
+# echo -e "\033[32m✔WebUI 开始运行\033[0m,详细日志请到 ~/my_plugins/webui.log 查看"
 # sleep 3s
 
 cd /home/zhenxun_bot
