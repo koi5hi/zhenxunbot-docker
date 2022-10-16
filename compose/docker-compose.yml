@@ -1,0 +1,70 @@
+version: "2.6.1"
+services:
+    # 数据库
+    postgres:
+        image: postgres:alpine
+        restart: on-failure
+        container_name: PostgreSQL
+        ports:
+            - 5432:5432 # 端口映射
+        environment:
+            POSTGRES_USER: zhenxun # 数据库用户
+            POSTGRES_PASSWORD: 123456 # 数据库用户密码
+            POSTGRES_DB: zhenxun_db # 默认数据库
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+
+    # Go-cqhttp
+    go-cqhttp:
+        container_name: Go-cqhttp
+        restart: on-failure
+        image: jyishit/go-cqhttp
+        links:
+            - zhenxun
+        depends_on:
+            - zhenxun
+        environment:
+            - bot_qq=3521636784 # !!!Bot用的QQ号
+            - bot_passwd=741852963Su # !!!Bot用的QQ密码
+        volumes:
+            - go-cqhttp_data:/home
+            - bot_data:/home/zhenxun_bot
+
+    # 机器人本体
+    zhenxun:
+        container_name: ZhenXun-bot
+        restart: on-failure
+        image: jyishit/zhenxun_bot
+        volumes:
+            - ./my_plugins:/home/my_plugins
+            - bot_data:/home/zhenxun_bot
+        expose:
+            - 8080
+        links:
+            - postgres
+        depends_on:
+            - postgres
+        environment:
+            - webui_user=admin # webui的用户名
+            - webui_passwd=123456 # webui的密码
+            - admin_qq=1340793687 # !!!管理员的QQ号
+
+    # 如果不需要数据库管理页面的话,删掉下面这一段
+    pgadmin:
+        container_name: pgadmin4
+        image: dpage/pgadmin4
+        restart: on-failure
+        environment:
+            PGADMIN_DEFAULT_EMAIL: admin@admin.com # 管理页面默认邮箱
+            PGADMIN_DEFAULT_PASSWORD: root # 管理页面默认密码
+        ports:
+            - "5050:80" # 管理页面端口映射
+        links:
+            - postgres # 链接postgres数据库
+        depends_on:
+            - postgres # 关联postgres
+
+volumes:
+    bot_data:
+    go-cqhttp_data:
+    postgres_data:

@@ -1,0 +1,12 @@
+
+    #机器人的网页后台,好像还有点问题
+    # webui:
+    #     container_name: webui
+    #     restart: on-failure
+    #     image: jyishit/zhenxun_webui
+    #     ports:
+    #         - 8081:80
+    #     depends_on:
+    #         - zhenxun
+    #     links:
+    #         - zhenxun

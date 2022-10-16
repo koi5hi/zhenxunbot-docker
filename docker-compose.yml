@@ -1,0 +1,67 @@
+version: "2.6.1"
+services:
+    postgres:
+        image: postgres:alpine
+        restart: on-failure
+        container_name: PostgreSQL
+        ports:
+            - 5432:5432 # 创建端口映射,不用expose是为了别的软件也能连接
+        environment:
+            POSTGRES_USER: zhenxun # 创建用户
+            POSTGRES_PASSWORD: 123456 # 创建用户密码
+            POSTGRES_DB: zhenxun_db # 创建默认数据库
+
+    go-cqhttp:
+        container_name: Go-cqhttp
+        restart: on-failure
+        image: gocq
+        links:
+            - zhenxun
+        depends_on:
+            - zhenxun
+        environment:
+            - webui_user=admin
+            - webui_passwd=123456
+            - bot_qq=3521636784 # Bot用的QQ号
+            - bot_passwd=741852963Su # Bot用的QQ密码
+
+    zhenxun:
+        container_name: ZhenXun-bot
+        restart: on-failure
+        image: zhenxun
+        volumes:
+            - $PWD/zhenxun-docker/my_plugins:/home/zhenxun_bot/my_plugins
+        expose:
+            - 8080
+        links:
+            - postgres
+        depends_on:
+            - postgres
+        environment:
+            - admin_qq=1340793687 # 管理员的QQ号
+
+    webui:
+        container_name: webui
+        restart: on-failure
+        image: webui
+        ports:
+            - 8081:80
+        depends_on:
+            - zhenxun
+        links:
+            - zhenxun
+
+    # 如果不需要数据库管理页面的话,删掉下面这一段
+    pgadmin:
+        container_name: pgadmin4
+        image: dpage/pgadmin4
+        restart: on-failure
+        environment:
+            PGADMIN_DEFAULT_EMAIL: admin@admin.com # 管理页面默认邮箱
+            PGADMIN_DEFAULT_PASSWORD: root # 管理页面默认密码
+        ports:
+            - "5050:80" # 管理页面端口映射
+        links:
+            - postgres # 链接postgres数据库
+        depends_on:
+            - postgres # 关联postgres
