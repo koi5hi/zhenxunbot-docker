@@ -31,7 +31,7 @@ RUN apt update && \
     libatk-bridge2.0-0 \
     libcups2 \
     libxcomposite1 \
-    #中文字体，解决原神黄历方块字问题
+    #中文字体,解决原神黄历方块字问题
     fonts-wqy-microhei && \
     #清缓存
     apt clean && \

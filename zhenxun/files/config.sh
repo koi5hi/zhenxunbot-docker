@@ -10,5 +10,4 @@ sed -i '3c SUPERUSERS=["'$admin_qq'"]' ./zhenxun_bot/.env.dev
 echo -e "已设置超级管理员的QQ为"$admin_qq
 sed -i '15c HOST = 0.0.0.0' ./zhenxun_bot/.env.dev
 
-
-mkdir ./zhenxun_bot/my_plugins > /dev/null 2>&1
+mkdir ./zhenxun_bot/my_plugins >/dev/null 2>&1
