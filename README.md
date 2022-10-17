@@ -25,7 +25,9 @@
 
 ## 快速开始🚀
 
-🐂 首先下载本仓库中的`docker-compose.yml`文件,用`wget`或者别的你会的方法
+🐕 你需要先确定你的设备已经安装好了**Docker**以及**Docker Compose**
+
+🐂 然后首先下载本仓库中的`docker-compose.yml`文件,用`wget`或者别的你会的方法
 
 ```shell
 wget https://raw.githubusercontent.com/SinKy-Yan/zhenxunbot-docker/mulit/compose/docker-compose.yml
